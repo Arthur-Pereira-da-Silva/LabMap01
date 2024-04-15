@@ -21,10 +21,13 @@ public class ClasseControle {
             throw new RegistroFilmeException("Nome do filme é inválido.");
         }
 
-
         Filme novoFilme = new Filme(nome, ano, diretor, roteirista, cinegrafista, elenco);
         filmesProduzidos.add(novoFilme);
         System.out.println("Filme produzido pela Globo Filmes");
+    }
+
+    public int getNumFilmesProduzidos() {
+        return filmesProduzidos.size();
     }
 
 

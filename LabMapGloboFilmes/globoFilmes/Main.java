@@ -3,8 +3,14 @@ package globoFilmes;
 import java.util.ArrayList;
 import java.util.List;
 
-import globoFilmes.entidades.*;
-import globoFilmes.tratamentoErros.*;
+import globoFilmes.entidades.Ator;
+import globoFilmes.entidades.Cinegrafista;
+import globoFilmes.entidades.Diretor;
+import globoFilmes.entidades.Funcionario;
+import globoFilmes.entidades.Roteirista;
+import globoFilmes.tratamentoErros.FilmeNaoEncontradoException;
+import globoFilmes.tratamentoErros.FuncionarioNaoEncontradoException;
+import globoFilmes.tratamentoErros.RegistroFilmeException;
 
 public class Main{
     public static void main(String[] args) throws FuncionarioNaoEncontradoException, FilmeNaoEncontradoException, RegistroFilmeException {
