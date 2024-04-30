@@ -1,49 +1,54 @@
 package test;
+import src.SistemaDeApoio.*;
+import src.Subsistemas.*;
 
-import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
 import java.util.ArrayList;
-
-import org.junit.jupiter.api.Test;
-
-import SistemaDeApoio.Entrevista;
-import SistemaDeApoio.Meet;
-import SistemaDeApoio.Reuniao;
-import Subsistemas.Administracao;
 
 public class AdministracaoTest {
 
-    private Administracao adm = new Administracao();
+    private Administracao administracao;
+    private Reuniao reuniao;
+    private Entrevista entrevista;
 
-    @Test
-    void testAddReuniao() {
-
-        Reuniao novo = new Reuniao(2022, 12, 03, 13, 30);
-
-        Reuniao test = adm.addReuniao(2022, 12, 03, 13, 30);
-
-        assertEquals(novo.getHorario(), test.getHorario());
-    }
-    @Test
-    void testAddEntrevista() {
-
-        Entrevista novo = new Entrevista(2022, 12, 03, 13, 30);
-
-        Entrevista test = adm.addEntrevista(2022, 12, 03, 13, 30);
-
-        assertEquals(novo.getHorario(), test.getHorario());
+    @Before
+    public void setUp() {
+        administracao = new Administracao();
     }
 
     @Test
-    void testRemoveMeet() {
-
-        adm.addReuniao(2022, 12, 03, 13, 30);
-
-        adm.getReunioes().remove(0);
-
-        ArrayList<Meet> test = new ArrayList<Meet>();
-
-        assertEquals(test, adm.getReunioes());
-
+    public void testAddReuniao() {
+        reuniao = administracao.addReuniao(2024, 4, 30, 10, 30);
+        assertEquals(1, administracao.getReunioes().size());
+        assertEquals(reuniao, administracao.getMeet(0));
     }
+
+    @Test
+    public void testAddEntrevista() {
+        entrevista = administracao.addEntrevista(2024, 5, 1, 13, 0);
+        assertEquals(1, administracao.getReunioes().size());
+        assertEquals(entrevista, administracao.getMeet(0));
+    }
+
+    @Test
+    public void testRemoveMeet() {
+        administracao.addReuniao(2024, 4, 30, 10, 30);
+        assertTrue(administracao.removeMeet(0));
+        assertEquals(0, administracao.getReunioes().size());
+    }
+
+
+    @Test
+    public void testAlterarParticipantes() {
+        Reuniao reuniao = administracao.addReuniao(2024, 4, 30, 10, 30);
+        ArrayList<Pessoa> participantes = new ArrayList<>();
+        participantes.add(new Pessoa("João"));
+        participantes.add(new Pessoa("Maria"));
+        administracao.alterarParticipantes(0, participantes);
+        assertEquals(participantes, reuniao.getParticipantes());
+    }
+
 }
+
