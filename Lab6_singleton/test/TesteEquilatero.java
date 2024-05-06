@@ -1,5 +1,11 @@
-import org.junit.Test;
+package test;
+
 import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import src.TrianguloEquilatero;
+import src.tratamento.TrianguloException;
 
 public class TesteEquilatero {
 
