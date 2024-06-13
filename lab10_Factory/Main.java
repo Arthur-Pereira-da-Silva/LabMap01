@@ -1,5 +1,5 @@
-import Restaurante.Restaurante;
 import factories.SanduicheFactory;
+import restaurante.Restaurante;
 
 public class Main {
     public static void main(String[] args) {
